@@ -29,13 +29,24 @@ const COMBOS = [
     [10,11,14,15]
 ]
 
+// const EASYBLOCKS = [
+//     [0,6,9,15],
+//     [3,5,10,12]
+// ]
+
 const CELLS = $(".cell");
 var boardArray;
 var limit = 0;
 var isPlayer1;
 
-$("button").click(startGame);
 startGame();
+
+$("button").click(function(){
+    startGame();
+    $("button").blur();
+});
+
+
 
 function startGame() {
     isPlayer1 = true;
@@ -53,15 +64,11 @@ function startGame() {
 
 function turnClick(square){
     if (typeof boardArray[square.target.id] == 'number'){
-        if (isPlayer1 == true){
-            turn(square.target.id, player1);
-        } else {
-            turn(square.target.id, player2);
-        }
+        isPlayer1 == true ? turn(square.target.id, player1) : turn(square.target.id, player2);
         isPlayer1 = !isPlayer1;
         checkTie();
     }
-    console.log(boardArray);
+    console.log(square.target.id);
 }
 
 function turn(squareId, player){
@@ -70,13 +77,11 @@ function turn(squareId, player){
     let gameWon = checkWin(boardArray, player);
     if(gameWon){
         gameOver(gameWon);
-        console.log(gameWon);
     }
 }
 
 function checkWin(board, player){
-    let plays = board.reduce((a, e, i) =>
-        (e === player) ? a.concat(i) : a, []);
+    let plays = board.reduce((a, e, i) => (e === player) ? a.concat(i) : a, []);
     let gameWon = null;
     for (let [index, win] of COMBOS.entries()){
         if (win.every(elem => plays.indexOf(elem) > -1)){
@@ -89,30 +94,25 @@ function checkWin(board, player){
 
 function gameOver(gameWon){
     for (let index of COMBOS[gameWon.index]) {
-        color = gameWon.player == player1 ? "blue" : "red";
+        color = gameWon.player == player1 ? "#7c94e4" : "#e4726b";
         $(`#${index}`).css("background-color", color)
     }
     for (var i = 0; i < CELLS.length; i++){
         $(CELLS[i]).off();
         limit = 0;
     }
-    declareWinner(gameWon.player == player1 ? "Player 1 wins." : "Player 2 wins.");
+    declareWinner(gameWon.player == player1 ? "Player 1 wins!" : "Player 2 wins!");
 }
 
 function declareWinner(player){
     $(".endgame").show();
     $(".endgame").text(`${player}`);
-    console.log(`${player}`)
-}
-
-function emptySquares(){
-    return boardArray.filter(s => typeof s == 'number');
 }
 
 function checkTie() {
     if (emptySquares().length == 0){
         for (var i = 0; i < CELLS.length; i++){
-            $(CELLS[i]).css("background-color", "green");
+            $(CELLS[i]).css("background-color", "#bad169");
             $(CELLS[i]).off();
             limit = 0;
         }
@@ -120,4 +120,8 @@ function checkTie() {
         return true;
     }
     return false;
+}
+
+function emptySquares(){
+    return boardArray.filter(s => typeof s == 'number');
 }

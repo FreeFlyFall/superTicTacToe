@@ -11,10 +11,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <!-- <link rel="manifest" href="site.webmanifest"> -->
-  <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
-
-  <script src="https:/d3js.org/d3.v4.js"></script>
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
 </head>
@@ -24,9 +21,10 @@
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
 
-  <!-- Add your site or application content here -->
-
   <body class="container">
+    <div>
+      <h1 class="flex">Super Tic Tac Toe</h1>
+    </div>
     <div class="flex">
       <table>
         <tr>
@@ -58,10 +56,17 @@
     <div class="flex">
       <button class="btn btn-secondary">Replay</button>
     </div>
-    <div class="endgame flex">
+    <div class="endgame flex mt-3">
       <div class="text"></div>
     </div>
-    <!-- Add rules -->
+    <div style="list-style: none" class="mt-5 rules">
+      <li>Win conditions:</li>
+      <ul>
+        <li>Fill 4 in a row, column, or diagonally, or</li>
+        <li>Fill 4 in a square, or</li>
+        <li>Fill the four corners</li>
+      </ul>
+    </div>
   </body>
 
   <!-- <script src="js/vendor/modernizr-3.6.0.min.js"></script> -->

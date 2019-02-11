@@ -136,11 +136,13 @@ table tr td:last-child {
 }
 
 .btn {
-    margin-top: 450px;
+    margin-top: 465px;
 }
 
-.endgame {
-    margin-top: 15px;
+.rules {
+    position: absolute;
+    margin: 0 auto;
+    top: 590px;
 }
 
 /* ==========================================================================
