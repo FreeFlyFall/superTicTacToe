@@ -46,8 +46,6 @@ $("button").click(function(){
     $("button").blur();
 });
 
-
-
 function startGame() {
     isPlayer1 = true;
     $(".endgame").hide();
