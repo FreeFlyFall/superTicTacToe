@@ -38,6 +38,7 @@ const CELLS = $(".cell");
 var boardArray;
 var limit = 0;
 var isPlayer1;
+var gameWon;
 
 startGame();
 
@@ -64,23 +65,23 @@ function turnClick(square){
     if (typeof boardArray[square.target.id] == 'number'){
         isPlayer1 == true ? turn(square.target.id, player1) : turn(square.target.id, player2);
         isPlayer1 = !isPlayer1;
-        checkTie();
     }
-    console.log(square.target.id);
+    checkTie();
 }
 
 function turn(squareId, player){
     boardArray[squareId] = player;
     $(`#${squareId}`).text(player);
-    let gameWon = checkWin(boardArray, player);
+    gameWon = checkWin(boardArray, player);
     if(gameWon){
         gameOver(gameWon);
+        gameWon = true;
     }
 }
 
 function checkWin(board, player){
     let plays = board.reduce((a, e, i) => (e === player) ? a.concat(i) : a, []);
-    let gameWon = null;
+    gameWon = null;
     for (let [index, win] of COMBOS.entries()){
         if (win.every(elem => plays.indexOf(elem) > -1)){
             gameWon = {index: index, player: player};
@@ -108,7 +109,7 @@ function declareWinner(player){
 }
 
 function checkTie() {
-    if (emptySquares().length == 0){
+    if (emptySquares().length == 0 && gameWon != true){
         for (var i = 0; i < CELLS.length; i++){
             $(CELLS[i]).css("background-color", "#bad169");
             $(CELLS[i]).off();
