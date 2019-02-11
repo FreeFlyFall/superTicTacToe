@@ -113,11 +113,8 @@ td {
 
 table {
     border-collapse: collapse;
-    /* centering (remove these sub with flexbox) */
     position: absolute;
-    left: 50%;
-    margin-left: -155px;
-    top: 50px;
+    margin-top: 25px;
 }
 
 table tr:first-child td{
@@ -131,6 +128,19 @@ table tr td:first-child {
 }
 table tr td:last-child {
     border-right: 0;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    margin-top: 450px;
+}
+
+.endgame {
+    margin-top: 15px;
 }
 
 /* ==========================================================================
